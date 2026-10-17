@@ -1,855 +1,888 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#101820">
+<meta name="description" content="Discover your everyday look with UrbanStyle. Browse the latest clothing collection, save favourites and build your cart.">
 <title>UrbanStyle | Premium Fashion</title>
-
 <style>
-:root {
+:root{
   --dark:#101820;
   --blue:#287cf0;
-  --gold:#f5b942;
   --bg:#f5f6f8;
-  --muted:#718096;
+  --muted:#718096}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0}
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:90px}
+body{
+  overflow-x:hidden}
+::selection{
+  background:#287cf0;
+  color:#fff}
+button,a,.product,.cat,.trust-item{
+   -webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:3px solid #79b7ff;
+  outline-offset:3px}
+.primary,.secondary,.chip,.iconbtn{
+  transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s,background .28s,border-color .28s}
+.primary:hover,.secondary:hover,.chip:hover,.iconbtn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 22px #10182015}
+.page.active{
+  animation:pageEnter .48s cubic-bezier(.2,.75,.25,1) both}
+.hero-inner{
+  position:relative;
+  isolation:isolate;
+  animation:heroReveal 1s cubic-bezier(.2,.8,.2,1) both}
+.hero-inner:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(115deg,#ffffff10,transparent 48%,#ffffff08);
+  animation:glowSweep 7s ease-in-out infinite}
+.product,.cat,.trust-item,.promo,.contactbox,.cartrow{
+  animation:softRise .65s cubic-bezier(.2,.7,.2,1) both}
+.productgrid .product:nth-child(2),.categories .cat:nth-child(2){
+  animation-delay:.06s}
+.productgrid .product:nth-child(3),.categories .cat:nth-child(3){
+  animation-delay:.12s}
+.productgrid .product:nth-child(4),.categories .cat:nth-child(4){
+  animation-delay:.18s}
+.productpic img{
+  will-change:transform}
+.heart{
+  transition:transform .25s,background .25s,color .25s}
+.heart:active{
+  transform:scale(.82)}
+.brand span{
+  display:inline-block;
+  animation:brandShine 4s ease-in-out infinite}
+@keyframes pageEnter{
+  from{
+  opacity:0;
+  transform:translateY(12px)}
+to{
+  opacity:1;
+  transform:translateY(0)}
 }
-* {box-sizing:border-box;margin:0;padding:0}
-html {scroll-behavior:smooth}
-body {
+@keyframes heroReveal{
+  from{
+  opacity:0;
+  transform:translateY(18px) scale(.985);
+  filter:saturate(.7)}
+to{
+  opacity:1;
+  transform:none;
+  filter:saturate(1)}
+}
+@keyframes softRise{
+  from{
+  opacity:0;
+  transform:translateY(14px)}
+to{
+  opacity:1;
+  transform:translateY(0)}
+}
+@keyframes glowSweep{
+  0%,100%{
+  opacity:.15;
+  transform:translateX(-3%)}
+50%{
+  opacity:.55;
+  transform:translateX(3%)}
+}
+@keyframes brandShine{
+  0%,100%{
+  text-shadow:0 0 0 #287cf000}
+50%{
+  text-shadow:0 0 16px #287cf055}
+}
+body{
   font-family:Arial,sans-serif;
   background:var(--bg);
-  color:var(--dark);
-}
-button,input,select {font:inherit}
-button,a { -webkit-tap-highlight-color:transparent }
-button {cursor:pointer}
-a {text-decoration:none;color:inherit}
-img {display:block;max-width:100%}
-button:focus-visible,a:focus-visible,input:focus-visible {
-  outline:2px solid var(--blue);outline-offset:3px
-}
-
-/* INTRO ANIMATION */
-#intro {
-  position:fixed;inset:0;z-index:9999;
-  display:grid;place-items:center;
-  background:#101820;color:white;
-  animation:introOut .7s ease 1.7s forwards;
-  pointer-events:none;
-}
-.intro-logo {
-  font-size:clamp(34px,8vw,65px);
-  font-weight:900;letter-spacing:-2px;
-  animation:logoIn 1s cubic-bezier(.2,.8,.2,1) both;
-}
-.intro-logo span {color:#59a3ff}
-.intro-line {
-  width:0;height:3px;background:#59a3ff;
-  margin:16px auto 0;
-  animation:lineIn .8s ease .3s forwards;
-}
-@keyframes logoIn {
-  from {opacity:0;transform:translateY(35px) scale(.85);filter:blur(8px)}
-  to {opacity:1;transform:none;filter:blur(0)}
-}
-@keyframes lineIn {to{width:100%}}
-@keyframes introOut {to{opacity:0;visibility:hidden}}
-@keyframes float {50%{transform:translateY(-10px)}}
-@keyframes pulse {50%{transform:scale(1.05)}}
-@keyframes pop {from{opacity:0;transform:scale(.94)}to{opacity:1;transform:scale(1)}}
-@keyframes fadeUp {from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
-@keyframes shimmer {to{background-position:-200% 0}}
-
-/* HEADER */
-.topbar {
-  background:#0b131a;color:#e9edf2;
-  text-align:center;padding:9px 10px;
-  font-size:12px;letter-spacing:.5px;
-}
-header {
-  background:rgba(255,255,255,.96);
-  position:sticky;top:0;z-index:100;
+  color:var(--dark)}
+button,input,select{
+  font:inherit}
+button{
+  cursor:pointer}
+a{
+  text-decoration:none;
+  color:inherit}
+img{
+  display:block;
+  max-width:100%}
+.topbar{
+  background:#0b131a;
+  color:#e9edf2;
+  text-align:center;
+  padding:9px;
+  font-size:12px}
+header{
+  background:#fffffff2;
+  position:sticky;
+  top:0;
+  z-index:100;
   box-shadow:0 3px 18px #1018200b;
-  backdrop-filter:blur(12px);
-}
-.nav {
-  max-width:1250px;margin:auto;padding:15px 22px;
-  display:flex;align-items:center;gap:24px;
-}
-.brand {font-size:25px;font-weight:900;white-space:nowrap}
-.brand span {color:var(--blue)}
-.navlinks {display:flex;gap:22px;align-items:center}
-.navlinks a {font-size:14px;font-weight:600}
-.navlinks a:hover {color:var(--blue)}
-.searchbox {
-  display:flex;align-items:center;gap:8px;
-  background:#f0f2f5;padding:10px 12px;border-radius:10px;
-  flex:1;min-width:70px;
-}
-.searchbox input {
-  width:100%;border:0;background:transparent;outline:0;
-  min-width:0;
-}
-.actions {display:flex;gap:8px;align-items:center}
-.iconbtn {
-  border:0;background:#f0f2f5;border-radius:10px;
-  padding:10px;position:relative;font-size:18px;
-}
-.count {
-  position:absolute;right:-5px;top:-6px;
-  background:#287cf0;color:white;border-radius:50%;
-  min-width:18px;height:18px;padding:2px;
-  font-size:11px;
-}
-.primary {
-  border:0;background:var(--blue);color:white;
-  padding:13px 20px;border-radius:9px;
-  font-weight:700;transition:.25s;
-}
-.primary:hover {background:#155fca;transform:translateY(-2px)}
-.secondary {
-  border:1px solid #dce1e8;background:white;
-  padding:12px 17px;border-radius:9px;font-weight:700;
-}
-.page {display:none;min-height:65vh;animation:fadeUp .4s ease}
-.page.active {display:block}
-.container {max-width:1200px;margin:auto;padding:32px 22px}
-.eyebrow {
-  text-transform:uppercase;letter-spacing:2px;
-  font-size:11px;font-weight:800;color:var(--blue);
-  margin-bottom:14px;
-}
-h1,h2,h3 {line-height:1.15}
-h2 {font-size:clamp(25px,4vw,34px)}
-.sectionhead {
-  display:flex;justify-content:space-between;
-  align-items:end;gap:12px;margin-bottom:22px;
-}
-.muted {color:var(--muted);line-height:1.7}
-.small {font-size:12px}
-
-/* HERO */
-.hero {
-  max-width:1250px;margin:22px auto 0;padding:0 22px;
-}
-.hero-inner {
-  min-height:480px;border-radius:20px;overflow:hidden;
-  display:flex;align-items:center;color:white;
+  backdrop-filter:blur(12px)}
+.nav{
+  max-width:1250px;
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  flex-wrap:wrap}
+.brand{
+  font-size:25px;
+  font-weight:900;
+  white-space:nowrap}
+.brand span{
+  color:var(--blue)}
+.navlinks{
+  display:flex;
+  gap:18px;
+  align-items:center}
+.navlinks a{
+  font-size:14px;
+  font-weight:700}
+.searchbox{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:#f0f2f5;
+  padding:10px 12px;
+  border-radius:10px;
+  flex:1;
+  min-width:130px}
+.searchbox input{
+  width:100%;
+  border:0;
+  background:transparent;
+  outline:0;
+  min-width:0}
+.actions{
+  display:flex;
+  gap:8px}
+.iconbtn{
+  border:0;
+  background:#f0f2f5;
+  border-radius:10px;
+  padding:10px;
   position:relative;
-  background:
-    linear-gradient(90deg,#07111af2 0%,#07111ab0 45%,transparent 100%),
-    url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1600&q=85') center/cover;
+  font-size:18px}
+.count{
+  position:absolute;
+  right:-5px;
+  top:-6px;
+  background:var(--blue);
+  color:white;
+  border-radius:50%;
+  min-width:18px;
+  height:18px;
+  padding:2px;
+  font-size:11px}
+.primary,.secondary{
+  padding:12px 17px;
+  border-radius:9px;
+  font-weight:700;
+  transition:.25s}
+.primary{
+  border:0;
+  background:var(--blue);
+  color:white}
+.primary:hover{
+  background:#155fca;
+  transform:translateY(-2px)}
+.secondary{
+  border:1px solid #dce1e8;
+  background:white}
+.page{
+  display:none;
+  min-height:65vh;
+  animation:fadeUp .4s ease}
+.page.active{
+  display:block}
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:32px 22px}
+.eyebrow{
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:11px;
+  font-weight:800;
+  color:var(--blue);
+  margin-bottom:14px}
+h1,h2,h3{
+  line-height:1.15}
+h2{
+  font-size:clamp(25px,4vw,34px)}
+.muted{
+  color:var(--muted);
+  line-height:1.7}
+.hero{
+  max-width:1250px;
+  margin:22px auto 0;
+  padding:0 22px}
+.hero-inner{
+  min-height:450px;
+  border-radius:20px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  color:white;
+  background:linear-gradient(90deg,#07111af2 0%,#07111ab0 48%,transparent 100%),url('https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1600&q=85') center/cover}
+.hero-content{
+  padding:clamp(25px,6vw,70px);
+  max-width:610px;
+  animation:fadeUp .9s ease both}
+.hero h1{
+  font-size:clamp(40px,7vw,76px);
+  letter-spacing:-2px}
+.hero h1 span{
+  color:#71b2ff}
+.hero p{
+  color:#e0e6ee;
+  line-height:1.8;
+  margin:20px 0}
+.hero-buttons{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap}
+.hero .secondary{
+  background:#ffffff12;
+  color:white;
+  border-color:#ffffff55}
+.trust{
+  max-width:1200px;
+  margin:24px auto;
+  padding:0 22px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px}
+.trust-item{
+  padding:17px;
+  background:white;
+  border:1px solid #eceff3;
+  border-radius:12px;
+  font-size:13px;
+  font-weight:700}
+.trust-item span{
+  display:block;
+  font-size:22px;
+  margin-bottom:8px}
+.trust-item small{
+  display:block;
+  color:var(--muted);
+  font-weight:400;
+  margin-top:5px}
+.sectionhead{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  gap:12px;
+  margin-bottom:22px}
+.categories{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px}
+.cat{
+  position:relative;
+  height:210px;
+  overflow:hidden;
+  border-radius:13px;
+  cursor:pointer;
+  background:#dce2e9}
+.cat img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .5s}
+.cat:hover img{
+  transform:scale(1.08)}
+.cat:after{
+  content:"";
+  position:absolute;
+  inset:30% 0 0;
+  background:linear-gradient(transparent,#000a)}
+.cat-label{
+  position:absolute;
+  bottom:18px;
+  left:17px;
+  color:white;
+  z-index:1;
+  font-size:20px;
+  font-weight:800}
+.filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin:18px 0}
+.filters input,.filters select{
+  border:1px solid #dce1e8;
+  background:white;
+  border-radius:9px;
+  padding:11px;
+  max-width:100%}
+.chip{
+  padding:10px 15px;
+  border:1px solid #dce1e8;
+  background:white;
+  border-radius:30px;
+  font-size:13px}
+.chip.selected{
+  background:var(--dark);
+  color:white;
+  border-color:var(--dark)}
+.productgrid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:17px}
+.product{
+  background:white;
+  border-radius:13px;
+  overflow:hidden;
+  border:1px solid #edf0f4;
+  transition:transform .25s,box-shadow .25s;
+  min-width:0}
+.product:hover{
+  transform:translateY(-5px);
+  box-shadow:0 12px 30px #10182012}
+.productpic{
+  height:250px;
+  position:relative;
+  overflow:hidden;
+  background:#e8ebef}
+.productpic img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .5s;
+  cursor:pointer}
+.product:hover .productpic img{
+  transform:scale(1.055)}
+.tag{
+  position:absolute;
+  top:11px;
+  left:10px;
+  background:white;
+  padding:6px 8px;
+  border-radius:5px;
+  font-size:11px;
+  font-weight:800}
+.heart{
+  position:absolute;
+  top:10px;
+  right:10px;
+  background:white;
+  border:0;
+  border-radius:50%;
+  width:36px;
+  height:36px;
+  font-size:18px}
+.heart.on{
+  color:#e33960}
+.productinfo{
+  padding:14px}
+.productinfo h3{
+  font-size:15px;
+  margin:8px 0}
+.stars{
+  color:#e7a21a;
+  font-size:12px}
+.review{
+  color:var(--muted);
+  font-size:11px}
+.price{
+  font-weight:800;
+  margin-top:9px}
+.oldprice{
+  color:#9aa2ae;
+  text-decoration:line-through;
+  font-size:12px;
+  margin-left:5px;
+  font-weight:400}
+.discount{
+  color:#12814c;
+  font-size:12px;
+  font-weight:700;
+  margin-top:5px}
+.cardbuttons{
+  display:flex;
+  gap:7px;
+  margin-top:13px}
+.cardbuttons button{
+  flex:1;
+  padding:10px 5px;
+  font-size:12px}
+.empty{
+  grid-column:1/-1;
+  text-align:center;
+  padding:45px 10px;
+  background:white;
+  border-radius:12px}
+.promo{
+  background:#101e28;
+  color:white;
+  border-radius:17px;
+  padding:clamp(24px,5vw,48px);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:25px}
+.promo h2{
+  max-width:600px;
+  margin-bottom:12px}
+.promo p{
+  color:#c7d3df;
+  line-height:1.7}
+.promo .primary{
+  margin-top:18px}
+.promo-mark{
+  font-size:clamp(55px,10vw,100px);
+  animation:float 3s ease-in-out infinite}
+.detail-layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:35px;
+  align-items:start}
+.detail-image{
+  border-radius:15px;
+  overflow:hidden;
+  background:#e9edf2}
+.detail-image img{
+  width:100%;
+  max-height:580px;
+  object-fit:cover}
+.detail-copy{
+  padding:10px 0}
+.detail-copy h1{
+  font-size:clamp(28px,4vw,42px);
+  margin:12px 0}
+.detail-copy p{
+  line-height:1.8}
+.detail-price{
+  font-size:28px;
+  font-weight:900;
+  margin:18px 0}
+.detail-price del{
+  font-size:16px;
+  color:#8b95a1;
+  font-weight:400}
+.option-label{
+  font-weight:700;
+  font-size:13px;
+  margin:20px 0 10px}
+.options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px}
+.opt{
+  border:1px solid #d7dde5;
+  background:white;
+  padding:10px 15px;
+  border-radius:7px}
+.opt.selected{
+  border:2px solid var(--blue);
+  color:var(--blue)}
+.qty{
+  display:flex;
+  align-items:center;
+  gap:12px}
+.qty button{
+  width:36px;
+  height:36px;
+  border:1px solid #ddd;
+  background:white;
+  border-radius:7px}
+.detail-buttons{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:22px}
+.benefits{
+  border-top:1px solid #e4e8ee;
+  margin-top:25px;
+  padding-top:18px;
+  line-height:2;
+  font-size:13px}
+.cartrow{
+  display:grid;
+  grid-template-columns:90px 1fr auto;
+  align-items:center;
+  gap:14px;
+  background:white;
+  padding:14px;
+  border-radius:12px;
+  margin-bottom:12px}
+.cartrow img{
+  width:90px;
+  height:100px;
+  object-fit:cover;
+  border-radius:8px}
+.cartrow h3{
+  font-size:14px;
+  margin-bottom:8px}
+.cartsummary{
+  background:white;
+  padding:22px;
+  border-radius:13px;
+  margin-top:20px}
+.summaryline{
+  display:flex;
+  justify-content:space-between;
+  margin:13px 0;
+  gap:15px}
+.total{
+  font-size:20px;
+  font-weight:900;
+  border-top:1px solid #e5e8ed;
+  padding-top:16px}
+.notice{
+  background:#eaf4ff;
+  color:#194d83;
+  padding:13px;
+  border-radius:9px;
+  font-size:13px;
+  line-height:1.6;
+  margin:12px 0}
+.aboutgrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+  align-items:center}
+.aboutgrid img{
+  width:100%;
+  height:340px;
+  object-fit:cover;
+  border-radius:14px}
+.aboutgrid p{
+  line-height:1.9;
+  margin:14px 0}
+.contactbox{
+  background:white;
+  padding:25px;
+  border-radius:14px;
+  margin-top:20px}
+.contactbox input,.contactbox textarea{
+  display:block;
+  width:100%;
+  padding:13px;
+  border:1px solid #dce1e8;
+  border-radius:8px;
+  margin:12px 0}
+.contactbox textarea{
+  min-height:100px}
+footer{
+  background:#0b131a;
+  color:white;
+  margin-top:40px;
+  padding:40px 22px 20px}
+.footergrid{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:25px}
+footer h3{
+  margin-bottom:14px}
+footer p,footer a{
+  color:#b7c2ce;
+  font-size:13px;
+  line-height:2}
+footer a{
+  display:block}
+.copyright{
+  max-width:1200px;
+  margin:25px auto 0;
+  padding-top:18px;
+  border-top:1px solid #ffffff20;
+  color:#9aa7b4;
+  font-size:12px}
+.toast{
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  transform:translate(-50%,20px);
+  background:#101820;
+  color:white;
+  padding:14px 20px;
+  border-radius:10px;
+  z-index:500;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  max-width:90%;
+  text-align:center;
+  font-size:13px}
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0)}
+#intro{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:grid;
+  place-items:center;
+  background:#101820;
+  color:white;
+  animation:introOut .7s ease 1.5s forwards;
+  pointer-events:none}
+.intro-logo{
+  font-size:clamp(34px,8vw,65px);
+  font-weight:900;
+  letter-spacing:-2px;
+  animation:logoIn 1s both}
+.intro-logo span{
+  color:#59a3ff}
+.intro-line{
+  width:0;
+  height:3px;
+  background:#59a3ff;
+  margin:16px auto 0;
+  animation:lineIn .8s ease .3s forwards}
+.mobilebar{
+  display:none}
+@keyframes logoIn{
+  from{
+  opacity:0;
+  transform:translateY(35px) scale(.85);
+  filter:blur(8px)}
+to{
+  opacity:1;
+  transform:none;
+  filter:blur(0)}
 }
-.hero-content {
-  position:relative;z-index:1;padding:clamp(25px,6vw,70px);
-  max-width:610px;animation:fadeUp .9s ease .2s both;
+@keyframes lineIn{
+  to{
+  width:100%}
 }
-.hero h1 {font-size:clamp(40px,7vw,76px);letter-spacing:-2px}
-.hero h1 span {color:#71b2ff}
-.hero p {color:#e0e6ee;line-height:1.8;margin:20px 0}
-.hero-buttons {display:flex;gap:10px;flex-wrap:wrap}
-.hero .secondary {background:#ffffff12;color:white;border-color:#ffffff55}
-.hero-note {margin-top:25px;font-size:12px;color:#d1d9e2}
-
-/* TRUST BAR */
-.trust {
-  max-width:1200px;margin:24px auto;padding:0 22px;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+@keyframes introOut{
+  to{
+  opacity:0;
+  visibility:hidden}
 }
-.trust-item {
-  padding:17px;background:white;border:1px solid #eceff3;
-  border-radius:12px;font-size:13px;font-weight:700;
+@keyframes float{
+  50%{
+  transform:translateY(-10px)}
 }
-.trust-item span {display:block;font-size:22px;margin-bottom:8px}
-.trust-item small {display:block;color:var(--muted);font-weight:400;margin-top:5px}
-
-/* CATEGORY */
-.categories {display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
-.cat {
-  position:relative;height:225px;overflow:hidden;
-  border-radius:13px;cursor:pointer;background:#dce2e9;
+@keyframes fadeUp{
+  from{
+  opacity:0;
+  transform:translateY(22px)}
+to{
+  opacity:1;
+  transform:none}
 }
-.cat img {width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.cat:hover img {transform:scale(1.08)}
-.cat:after {
-  content:"";position:absolute;inset:30% 0 0;
-  background:linear-gradient(transparent,#000a);
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+  animation-duration:.01ms!important;
+  animation-iteration-count:1!important;
+  scroll-behavior:auto!important;
+  transition-duration:.01ms!important}
 }
-.cat-label {
-  position:absolute;bottom:18px;left:17px;color:white;z-index:1;
-  font-size:20px;font-weight:800;
+@media(max-width:900px){
+  .nav{
+  gap:12px}
+.navlinks{
+  order:3;
+  width:100%;
+  justify-content:center}
+.productgrid{
+  grid-template-columns:repeat(3,minmax(0,1fr))}
+.productpic{
+  height:220px}
+.categories{
+  grid-template-columns:repeat(2,1fr)}
 }
-
-/* PRODUCT CARDS */
-.filters {
-  display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;
-}
-.filters input,.filters select {
-  border:1px solid #dce1e8;background:white;
-  border-radius:9px;padding:11px;max-width:100%;
-}
-.chip {
-  padding:10px 15px;border:1px solid #dce1e8;
-  background:white;border-radius:30px;font-size:13px;
-}
-.chip.selected {background:var(--dark);color:white;border-color:var(--dark)}
-.productgrid {
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px;
-}
-.product {
-  background:white;border-radius:13px;overflow:hidden;
-  border:1px solid #edf0f4;transition:transform .25s,box-shadow .25s;
-  min-width:0;
-}
-.product:hover {transform:translateY(-5px);box-shadow:0 12px 30px #10182012}
-.productpic {height:250px;position:relative;overflow:hidden;background:#e8ebef}
-.productpic img {width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.product:hover .productpic img {transform:scale(1.055)}
-.tag {
-  position:absolute;top:11px;left:10px;background:white;
-  padding:6px 8px;border-radius:5px;font-size:11px;font-weight:800;
-}
-.heart {
-  position:absolute;top:10px;right:10px;
-  background:white;border:0;border-radius:50%;
-  width:36px;height:36px;font-size:18px;
-}
-.heart.on {color:#e33960}
-.productinfo {padding:14px}
-.productinfo h3 {font-size:15px;margin:8px 0}
-.stars {color:#e7a21a;font-size:12px}
-.review {color:var(--muted);font-size:11px}
-.price {font-weight:800;margin-top:9px}
-.oldprice {color:#9aa2ae;text-decoration:line-through;font-size:12px;margin-left:5px;font-weight:400}
-.discount {color:#12814c;font-size:12px;font-weight:700;margin-top:5px}
-.cardbuttons {display:flex;gap:7px;margin-top:13px}
-.cardbuttons button {flex:1;padding:10px 5px;font-size:12px}
-.empty {grid-column:1/-1;text-align:center;padding:45px 10px;background:white;border-radius:12px}
-
-/* PROMO */
-.promo {
-  background:#101e28;color:white;border-radius:17px;
-  padding:clamp(24px,5vw,48px);display:flex;
-  justify-content:space-between;align-items:center;gap:25px;
-}
-.promo h2 {max-width:600px;margin-bottom:12px}
-.promo p {color:#c7d3df;line-height:1.7}
-.promo .primary {margin-top:18px}
-.promo-mark {font-size:clamp(55px,10vw,100px);animation:float 3s ease-in-out infinite}
-
-/* DETAIL */
-.detail-layout {
-  display:grid;grid-template-columns:1fr 1fr;gap:35px;align-items:start;
-}
-.detail-image {
-  border-radius:15px;overflow:hidden;background:#e9edf2;
-}
-.detail-image img {width:100%;max-height:580px;object-fit:cover}
-.detail-copy {padding:10px 0}
-.detail-copy h1 {font-size:clamp(28px,4vw,42px);margin:12px 0}
-.detail-copy p {line-height:1.8}
-.detail-price {font-size:28px;font-weight:900;margin:18px 0}
-.detail-price del {font-size:16px;color:#8b95a1;font-weight:400}
-.option-label {font-weight:700;font-size:13px;margin:20px 0 10px}
-.options {display:flex;flex-wrap:wrap;gap:8px}
-.opt {
-  border:1px solid #d7dde5;background:white;
-  padding:10px 15px;border-radius:7px;
-}
-.opt.selected {border:2px solid var(--blue);color:var(--blue)}
-.qty {display:flex;align-items:center;gap:16px}
-.qty button {width:36px;height:36px;border:1px solid #ddd;background:white;border-radius:7px}
-.detail-buttons {display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-.detail-buttons button {flex:1}
-.benefits {border-top:1px solid #e4e8ee;margin-top:25px;padding-top:18px;line-height:2;font-size:13px}
-
-/* CART */
-.cartrow {
-  display:grid;grid-template-columns:90px 1fr auto;
-  align-items:center;gap:14px;background:white;
-  padding:14px;border-radius:12px;margin-bottom:12px;
-}
-.cartrow img {width:90px;height:100px;object-fit:cover;border-radius:8px}
-.cartrow h3 {font-size:14px;margin-bottom:8px}
-.cartsummary {background:white;padding:22px;border-radius:13px;margin-top:20px}
-.summaryline {display:flex;justify-content:space-between;margin:13px 0;gap:15px}
-.total {font-size:20px;font-weight:900;border-top:1px solid #e5e8ed;padding-top:16px}
-.notice {background:#eaf4ff;color:#194d83;padding:13px;border-radius:9px;font-size:13px;line-height:1.6;margin:12px 0}
-
-/* ABOUT & CONTACT */
-.aboutgrid {display:grid;grid-template-columns:1fr 1fr;gap:25px;align-items:center}
-.aboutgrid img {width:100%;height:340px;object-fit:cover;border-radius:14px}
-.aboutgrid p {line-height:1.9;margin:14px 0}
-.contactbox {background:white;padding:25px;border-radius:14px;margin-top:20px}
-.contactbox input,.contactbox textarea {
-  display:block;width:100%;padding:13px;border:1px solid #dce1e8;
-  border-radius:8px;margin:12px 0;
-}
-.contactbox textarea {min-height:100px;resize:vertical}
-
-/* FOOTER & TOAST */
-footer {background:#0b131a;color:white;margin-top:40px;padding:40px 22px 20px}
-.footergrid {
-  max-width:1200px;margin:auto;display:grid;
-  grid-template-columns:2fr 1fr 1fr;gap:25px;
-}
-footer h3 {margin-bottom:14px}
-footer p,footer a {color:#b7c2ce;font-size:13px;line-height:2}
-footer a {display:block}
-footer a:hover {color:white}
-.copyright {
-  max-width:1200px;margin:25px auto 0;padding-top:18px;
-  border-top:1px solid #ffffff20;color:#9aa7b4;font-size:12px;
-}
-.toast {
-  position:fixed;bottom:25px;left:50%;transform:translate(-50%,20px);
-  background:#101820;color:white;padding:14px 20px;border-radius:10px;
-  z-index:500;opacity:0;pointer-events:none;transition:.25s;
-  max-width:90%;text-align:center;font-size:13px;
-}
-.toast.show {opacity:1;transform:translate(-50%,0)}
-.mobilebar {display:none}
-
-/* RESPONSIVE */
-@media(max-width:900px) {
-  .nav {gap:12px;padding:13px 15px;flex-wrap:wrap}
-  .navlinks {order:3;width:100%;justify-content:center}
-  .searchbox {max-width:260px}
-  .productgrid {grid-template-columns:repeat(3,minmax(0,1fr))}
-  .productpic {height:220px}
-  .categories {grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:600px) {
-  .topbar {font-size:10px}
-  .nav {gap:9px}
-  .brand {font-size:22px}
-  .searchbox {order:4;flex-basis:100%;max-width:none}
-  .navlinks {justify-content:space-between;gap:8px}
-  .navlinks a {font-size:12px}
-  .actions {margin-left:auto}
-  .hero {padding:0 12px;margin-top:12px}
-  .hero-inner {min-height:430px;border-radius:13px;background-position:60% center}
-  .hero-content {padding:25px}
-  .hero h1 {font-size:43px}
-  .trust {grid-template-columns:repeat(2,1fr);padding:0 12px;gap:8px}
-  .trust-item {padding:13px;font-size:12px}
-  .container {padding:28px 13px}
-  .categories {gap:10px}
-  .cat {height:170px}
-  .cat-label {font-size:16px;left:12px;bottom:12px}
-  .productgrid {grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .productpic {height:190px}
-  .productinfo {padding:10px}
-  .productinfo h3 {font-size:13px}
-  .cardbuttons {gap:5px}
-  .cardbuttons button {font-size:11px;padding:10px 3px}
-  .promo {padding:25px 18px}
-  .promo-mark {font-size:48px}
-  .detail-layout,.aboutgrid {grid-template-columns:1fr;gap:20px}
-  .detail-image img {max-height:420px}
-  .cartrow {grid-template-columns:65px 1fr;gap:10px;padding:10px}
-  .cartrow img {width:65px;height:80px}
-  .cartrow .remove {grid-column:2}
-  .footergrid {grid-template-columns:1fr 1fr}
-  .footergrid>div:first-child {grid-column:1/-1}
-  .mobilebar {
-    display:flex;position:fixed;bottom:0;left:0;right:0;z-index:90;
-    justify-content:space-around;background:white;
-    border-top:1px solid #e7eaf0;padding:9px 4px calc(9px + env(safe-area-inset-bottom));
-  }
-  .mobilebar button {
-    border:0;background:transparent;font-size:11px;
-    display:flex;flex-direction:column;align-items:center;gap:4px;
-  }
-  .mobilebar b {font-size:20px;font-weight:400}
-  body {padding-bottom:65px}
-  footer {margin-top:20px}
-}
-@media(prefers-reduced-motion:reduce) {
-  *,*:before,*:after {
-    animation-duration:.01ms!important;
-    animation-iteration-count:1!important;
-    scroll-behavior:auto!important;
-    transition-duration:.01ms!important;
-  }
+@media(max-width:600px){
+  .topbar{
+  font-size:10px}
+.nav{
+  gap:9px;
+  padding:12px}
+.brand{
+  font-size:22px}
+.searchbox{
+  order:4;
+  flex-basis:100%}
+.navlinks{
+  justify-content:space-between;
+  gap:8px}
+.navlinks a{
+  font-size:12px}
+.actions{
+  margin-left:auto}
+.hero{
+  padding:0 12px;
+  margin-top:12px}
+.hero-inner{
+  min-height:420px;
+  border-radius:13px;
+  background-position:60% center}
+.hero-content{
+  padding:25px}
+.hero h1{
+  font-size:43px}
+.trust{
+  grid-template-columns:repeat(2,1fr);
+  padding:0 12px;
+  gap:8px}
+.trust-item{
+  padding:13px;
+  font-size:12px}
+.container{
+  padding:28px 13px}
+.categories{
+  gap:10px}
+.cat{
+  height:170px}
+.cat-label{
+  font-size:16px;
+  left:12px;
+  bottom:12px}
+.productgrid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px}
+.productpic{
+  height:190px}
+.productinfo{
+  padding:10px}
+.productinfo h3{
+  font-size:13px}
+.cardbuttons{
+  gap:5px}
+.cardbuttons button{
+  font-size:11px;
+  padding:10px 3px}
+.promo{
+  padding:25px 18px}
+.promo-mark{
+  font-size:48px}
+.detail-layout,.aboutgrid{
+  grid-template-columns:1fr;
+  gap:20px}
+.detail-image img{
+  max-height:420px}
+.cartrow{
+  grid-template-columns:65px 1fr;
+  gap:10px;
+  padding:10px}
+.cartrow img{
+  width:65px;
+  height:80px}
+.cartrow .remove{
+  grid-column:2}
+.footergrid{
+  grid-template-columns:1fr 1fr}
+.footergrid>div:first-child{
+  grid-column:1/-1}
+.mobilebar{
+  display:flex;
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:90;
+  justify-content:space-around;
+  background:white;
+  border-top:1px solid #e7eaf0;
+  padding:9px 4px calc(9px + env(safe-area-inset-bottom))}
+.mobilebar button{
+  border:0;
+  background:transparent;
+  font-size:11px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px}
+.mobilebar b{
+  font-size:20px;
+  font-weight:400}
+body{
+  padding-bottom:65px}
+footer{
+  margin-top:20px}
 }
 </style>
 </head>
-
 <body>
-
-<div id="intro">
-  <div>
-    <div class="intro-logo">Urban<span>Style.</span></div>
-    <div class="intro-line"></div>
-  </div>
-</div>
-
+<div id="intro"><div><div class="intro-logo">Urban<span>Style.</span></div><div class="intro-line"></div></div></div>
 <div class="topbar">✦ YOUR STYLE, YOUR IDENTITY &nbsp; | &nbsp; NEW SEASON COLLECTION ✦</div>
-
-<header>
-  <div class="nav">
-    <a href="#home" class="brand" onclick="go('home');return false">Urban<span>Style.</span></a>
-
-    <nav class="navlinks">
-      <a href="#home" onclick="go('home');return false">Home</a>
-      <a href="#shop" onclick="go('shop');return false">Shop</a>
-      <a href="#about" onclick="go('about');return false">About</a>
-      <a href="#contact" onclick="go('contact');return false">Contact</a>
-    </nav>
-
-    <form class="searchbox" onsubmit="event.preventDefault();searchNow()">
-      <span>⌕</span>
-      <input id="search" placeholder="Search clothes..." aria-label="Search products">
-      <button type="submit" style="border:0;background:none">→</button>
-    </form>
-
-    <div class="actions">
-      <button class="iconbtn" onclick="go('wishlist')" aria-label="Wishlist">♡<span id="wishCount" class="count">0</span></button>
-      <button class="iconbtn" onclick="go('cart')" aria-label="Shopping cart">🛒<span id="cartCount" class="count">0</span></button>
-    </div>
-  </div>
-</header>
-
-<!-- HOME -->
+<header><div class="nav">
+<a href="#home" class="brand" onclick="go('home');return false">Urban<span>Style.</span></a>
+<nav class="navlinks"><a href="#home" onclick="go('home');return false">Home</a><a href="#shop" onclick="go('shop');return false">Shop</a><a href="#about" onclick="go('about');return false">About</a><a href="#contact" onclick="go('contact');return false">Contact</a></nav>
+<form class="searchbox" onsubmit="event.preventDefault();searchNow()"><span>⌕</span><input id="search" placeholder="Search clothes..." aria-label="Search products"><button type="submit" style="border:0;background:none">→</button></form>
+<div class="actions"><button class="iconbtn" onclick="go('wishlist')">♡<span id="wishCount" class="count">0</span></button><button class="iconbtn" onclick="go('cart')">🛒<span id="cartCount" class="count">0</span></button></div>
+</div></header>
 <main>
 <div id="home" class="page active">
-  <div class="hero">
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="eyebrow" style="color:#8ec5ff">THE NEW COLLECTION</div>
-        <h1>Style That<br>Fits <span>You.</span></h1>
-        <p>Discover fashion that speaks your personality. Premium looks, timeless styles and everyday comfort.</p>
-        <div class="hero-buttons">
-          <button class="primary" onclick="go('shop')">Explore Collection →</button>
-          <button class="secondary" onclick="go('about')">Our Story</button>
-        </div>
-        <div class="hero-note">✦ Fresh styles. Your own vibe.</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="trust">
-    <div class="trust-item"><span>🚚</span>Easy Shopping<small>Browse products simply</small></div>
-    <div class="trust-item"><span>✨</span>Curated Styles<small>Looks for every day</small></div>
-    <div class="trust-item"><span>🔒</span>Secure Experience<small>Demo checkout only</small></div>
-    <div class="trust-item"><span>💬</span>Personal Support<small>Contact us for help</small></div>
-  </div>
-
-  <section class="container">
-    <div class="sectionhead">
-      <div><div class="eyebrow">FIND YOUR LOOK</div><h2>Shop by Category</h2></div>
-      <button class="secondary" onclick="go('shop')">View All →</button>
-    </div>
-    <div class="categories">
-      <div class="cat" onclick="setCategory('Men')">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=600&q=80" alt="Men's fashion">
-        <div class="cat-label">Men →</div>
-      </div>
-      <div class="cat" onclick="setCategory('Women')">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80" alt="Women's fashion">
-        <div class="cat-label">Women →</div>
-      </div>
-      <div class="cat" onclick="setCategory('Accessories')">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=600&q=80" alt="Fashion accessories">
-        <div class="cat-label">Accessories →</div>
-      </div>
-      <div class="cat" onclick="setCategory('All')">
-        <img loading="lazy" src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=600&q=80" alt="New collection">
-        <div class="cat-label">New Arrivals →</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="container">
-    <div class="sectionhead">
-      <div><div class="eyebrow">HANDPICKED FOR YOU</div><h2>Trending Now ✦</h2><p class="muted">Explore the UrbanStyle collection.</p></div>
-      <button class="secondary" onclick="go('shop')">All Products →</button>
-    </div>
-    <div id="homeProducts" class="productgrid"></div>
-  </section>
-
-  <section class="container">
-    <div class="promo">
-      <div><div class="eyebrow" style="color:#8ec5ff">YOUR NEXT FAVOURITE LOOK</div>
-        <h2>Good style never goes out of fashion.</h2>
-        <p>Explore the collection and find something that feels like you.</p>
-        <button class="primary" onclick="go('shop')">Discover Your Style →</button>
-      </div>
-      <div class="promo-mark">✦</div>
-    </div>
-  </section>
+<div class="hero"><div class="hero-inner"><div class="hero-content"><div class="eyebrow" style="color:#8ec5ff">THE NEW COLLECTION</div><h1>Style That<br>Fits <span>You.</span></h1><p>Discover fashion that speaks your personality. Premium looks, timeless styles and everyday comfort.</p><div class="hero-buttons"><button class="primary" onclick="go('shop')">Explore Collection →</button><button class="secondary" onclick="go('about')">Our Story</button></div><p>✦ Fresh styles. Your own vibe.</p></div></div></div>
+<div class="trust"><div class="trust-item"><span>🚚</span>Easy Shopping<small>Browse products simply</small></div><div class="trust-item"><span>✨</span>Curated Styles<small>Looks for every day</small></div><div class="trust-item"><span>🔒</span>Secure Experience<small>Demo checkout only</small></div><div class="trust-item"><span>💬</span>Personal Support<small>Contact us for help</small></div></div>
+<section class="container"><div class="sectionhead"><div><div class="eyebrow">FIND YOUR LOOK</div><h2>Shop by Category</h2></div><button class="secondary" onclick="go('shop')">View All →</button></div><div class="categories">
+<div class="cat" onclick="setCategory('Men')"><img src="https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=600&q=80" alt="Men's fashion"><div class="cat-label">Men →</div></div>
+<div class="cat" onclick="setCategory('Women')"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=600&q=80" alt="Women's fashion"><div class="cat-label">Women →</div></div>
+<div class="cat" onclick="setCategory('Accessories')"><img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?auto=format&fit=crop&w=600&q=80" alt="Accessories"><div class="cat-label">Accessories →</div></div>
+<div class="cat" onclick="setCategory('All')"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=600&q=80" alt="New collection"><div class="cat-label">New Arrivals →</div></div>
+</div></section>
+<section class="container"><div class="sectionhead"><div><div class="eyebrow">HANDPICKED FOR YOU</div><h2>Trending Now ✦</h2><p class="muted">Explore the UrbanStyle collection.</p></div><button class="secondary" onclick="go('shop')">All Products →</button></div><div id="homeProducts" class="productgrid"></div></section>
+<section class="container"><div class="promo"><div><div class="eyebrow" style="color:#8ec5ff">YOUR NEXT FAVOURITE LOOK</div><h2>Good style never goes out of fashion.</h2><p>Explore the collection and find something that feels like you.</p><button class="primary" onclick="go('shop')">Discover Your Style →</button></div><div class="promo-mark">✦</div></div></section>
 </div>
-
-<!-- SHOP -->
-<div id="shop" class="page">
-  <section class="container">
-    <div class="eyebrow">URBANSTYLE COLLECTION</div>
-    <h1 style="font-size:38px;margin-bottom:10px">Find Your Style.</h1>
-    <p class="muted" style="margin-bottom:24px">Discover all our demo products in one place.</p>
-
-    <div class="filters">
-      <button class="chip selected" onclick="setCategory('All')" data-cat="All">All</button>
-      <button class="chip" onclick="setCategory('Men')" data-cat="Men">Men</button>
-      <button class="chip" onclick="setCategory('Women')" data-cat="Women">Women</button>
-      <button class="chip" onclick="setCategory('Accessories')" data-cat="Accessories">Accessories</button>
-      <select id="sort" onchange="renderShop()" aria-label="Sort products">
-        <option value="featured">Featured</option>
-        <option value="low">Price: Low to High</option>
-        <option value="high">Price: High to Low</option>
-        <option value="name">Name: A to Z</option>
-      </select>
-    </div>
-    <p id="resultCount" class="muted small" style="margin-bottom:15px"></p>
-    <div id="shopProducts" class="productgrid"></div>
-  </section>
-</div>
-
-<!-- PRODUCT DETAILS -->
-<div id="detail" class="page">
-  <section class="container">
-    <button class="secondary" onclick="go('shop')" style="margin-bottom:20px">← Back to Shop</button>
-    <div id="detailContent"></div>
-  </section>
-</div>
-
-<!-- CART -->
-<div id="cart" class="page">
-  <section class="container">
-    <div class="eyebrow">YOUR BAG</div>
-    <h1 style="margin-bottom:22px">Shopping Cart 🛒</h1>
-    <div id="cartContent"></div>
-  </section>
-</div>
-
-<!-- WISHLIST -->
-<div id="wishlist" class="page">
-  <section class="container">
-    <div class="eyebrow">SAVED FOR LATER</div>
-    <h1 style="margin-bottom:22px">Your Wishlist ♡</h1>
-    <div id="wishProducts" class="productgrid"></div>
-  </section>
-</div>
-
-<!-- ABOUT -->
-<div id="about" class="page">
-  <section class="container">
-    <div class="aboutgrid">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1000&q=80" alt="Clothing store collection">
-      <div>
-        <div class="eyebrow">THE URBANSTYLE STORY</div>
-        <h1 style="font-size:clamp(32px,5vw,48px)">Fashion is how you express yourself.</h1>
-        <p class="muted">UrbanStyle is a sample clothing brand concept built around modern everyday fashion. Our goal is to make exploring styles feel simple, enjoyable and personal.</p>
-        <p class="muted">From everyday essentials to statement looks, this demo shows how a clothing store can present products online.</p>
-        <button class="primary" onclick="go('shop')">Explore Products →</button>
-      </div>
-    </div>
-    <div class="trust" style="padding:0;margin-top:35px">
-      <div class="trust-item"><span>✦</span>Modern Design<small>Clean and simple</small></div>
-      <div class="trust-item"><span>♡</span>Your Favourites<small>Save products</small></div>
-      <div class="trust-item"><span>▦</span>Easy Discovery<small>Search and filter</small></div>
-      <div class="trust-item"><span>↗</span>Mobile Friendly<small>Designed for small screens</small></div>
-    </div>
-  </section>
-</div>
-
-<!-- CONTACT -->
-<div id="contact" class="page">
-  <section class="container">
-    <div class="eyebrow">WE'RE HERE TO HELP</div>
-    <h1 style="font-size:38px">Let's Connect.</h1>
-    <p class="muted" style="margin-top:12px">Have a question about a product? Send a demo enquiry.</p>
-    <div class="contactbox">
-      <form onsubmit="sendEnquiry(event)">
-        <label for="customerName">Your Name</label>
-        <input id="customerName" required placeholder="Enter your name">
-        <label for="customerEmail">Email Address</label>
-        <input id="customerEmail" type="email" required placeholder="you@example.com">
-        <label for="customerMessage">Your Message</label>
-        <textarea id="customerMessage" required placeholder="How can we help?"></textarea>
-        <button class="primary" type="submit">Prepare Enquiry →</button>
-      </form>
-      <p class="muted small" style="margin-top:14px">Demo only: this form does not send or store messages on a server.</p>
-    </div>
-  </section>
-</div>
-
+<div id="shop" class="page"><section class="container"><div class="eyebrow">URBANSTYLE COLLECTION</div><h1 style="font-size:38px">Find Your Style.</h1><p class="muted">Explore our latest collection.</p><div class="filters"><button class="chip selected" onclick="setCategory('All')" data-cat="All">All</button><button class="chip" onclick="setCategory('Men')" data-cat="Men">Men</button><button class="chip" onclick="setCategory('Women')" data-cat="Women">Women</button><button class="chip" onclick="setCategory('Accessories')" data-cat="Accessories">Accessories</button><select id="sort" onchange="renderShop()"><option value="featured">Featured</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option><option value="name">Name: A to Z</option></select></div><p id="resultCount" class="muted small"></p><div id="shopProducts" class="productgrid"></div></section></div>
+<div id="detail" class="page"><section class="container"><button class="secondary" onclick="go('shop')">← Back to Shop</button><div id="detailContent" style="margin-top:20px"></div></section></div>
+<div id="cart" class="page"><section class="container"><div class="eyebrow">YOUR BAG</div><h1>Shopping Cart 🛒</h1><div id="cartContent" style="margin-top:22px"></div></section></div>
+<div id="wishlist" class="page"><section class="container"><div class="eyebrow">SAVED FOR LATER</div><h1>Your Wishlist ♡</h1><div id="wishProducts" class="productgrid" style="margin-top:22px"></div></section></div>
+<div id="about" class="page"><section class="container"><div class="aboutgrid"><img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1000&q=80" alt="Clothing collection"><div><div class="eyebrow">THE URBANSTYLE STORY</div><h1 style="font-size:clamp(32px,5vw,48px)">Fashion is how you express yourself.</h1><p class="muted" style="margin:14px 0">UrbanStyle is a modern everyday fashion store. Browse the collection and find a style that feels like you.</p><button class="primary" onclick="go('shop')">Explore Products →</button></div></div></section></div>
+<div id="contact" class="page"><section class="container"><div class="eyebrow">WE'RE HERE TO HELP</div><h1>Let's Connect.</h1><p class="muted" style="margin-top:12px">Have a question about a product? Prepare a demo enquiry.</p><div class="contactbox"><form onsubmit="sendEnquiry(event)"><label>Your Name</label><input id="customerName" required placeholder="Enter your name"><label>Email Address</label><input id="customerEmail" type="email" required placeholder="you@example.com"><label>Your Message</label><textarea id="customerMessage" required placeholder="How can we help?"></textarea><button class="primary">Prepare Enquiry →</button></form><p class="muted">Your enquiry will open in WhatsApp for you to send.</p></div></section></div>
 </main>
-
-<footer>
-  <div class="footergrid">
-    <div>
-      <div class="brand" style="color:white">Urban<span>Style.</span></div>
-      <p style="margin-top:12px">Style that fits you.<br>A modern fashion store demo.</p>
-    </div>
-    <div>
-      <h3>Quick Links</h3>
-      <a href="#home" onclick="go('home');return false">Home</a>
-      <a href="#shop" onclick="go('shop');return false">Shop</a>
-      <a href="#about" onclick="go('about');return false">About Us</a>
-      <a href="#contact" onclick="go('contact');return false">Contact</a>
-    </div>
-    <div>
-      <h3>Explore</h3>
-      <a href="#wishlist" onclick="go('wishlist');return false">Wishlist ♡</a>
-      <a href="#cart" onclick="go('cart');return false">Shopping Cart</a>
-      <p>Demo store · India</p>
-    </div>
-  </div>
-  <div class="copyright">© 2026 UrbanStyle. Sample portfolio project. Product prices and ratings are illustrative.</div>
-</footer>
-
-<nav class="mobilebar">
-  <button onclick="go('home')"><b>⌂</b>Home</button>
-  <button onclick="go('shop')"><b>⌕</b>Shop</button>
-  <button onclick="go('wishlist')"><b>♡</b>Wishlist</button>
-  <button onclick="go('cart')"><b>🛒</b>Cart</button>
-  <button onclick="go('contact')"><b>☏</b>Contact</button>
-</nav>
-
-<div id="toast" class="toast" role="status" aria-live="polite"></div>
-
+<footer><div class="footergrid"><div><div class="brand" style="color:white">Urban<span>Style.</span></div><p style="margin-top:12px">Style that fits you.<br>A modern fashion store for everyday style.</p></div><div><h3>Quick Links</h3><a href="#home" onclick="go('home');return false">Home</a><a href="#shop" onclick="go('shop');return false">Shop</a><a href="#about" onclick="go('about');return false">About Us</a><a href="#contact" onclick="go('contact');return false">Contact</a></div><div><h3>Explore</h3><a href="#wishlist" onclick="go('wishlist');return false">Wishlist ♡</a><a href="#cart" onclick="go('cart');return false">Shopping Cart</a><p>UrbanStyle · India</p></div></div><div class="copyright">© 2026 UrbanStyle. Fashion store. For orders, please contact the store.</div></footer>
+<nav class="mobilebar"><button onclick="go('home')"><b>⌂</b>Home</button><button onclick="go('shop')"><b>⌕</b>Shop</button><button onclick="go('wishlist')"><b>♡</b>Wishlist</button><button onclick="go('cart')"><b>🛒</b>Cart</button><button onclick="go('contact')"><b>☏</b>Contact</button></nav>
+<div id="toast" class="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const products = [
- {id:1,name:"Classic Cotton T-Shirt",cat:"Men",price:499,old:799,tag:"BESTSELLER",rating:4.5,reviews:128,size:["S","M","L","XL"],color:"Black",img:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80",desc:"A versatile everyday cotton T-shirt with a clean, timeless look. Pair it with jeans or shorts."},
- {id:2,name:"Everyday Denim Jeans",cat:"Men",price:999,old:1499,tag:"POPULAR",rating:4.4,reviews:86,size:["28","30","32","34","36"],color:"Blue",img:"https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=80",desc:"A classic denim-inspired look for everyday outfits. A versatile piece for casual styling."},
- {id:3,name:"Elegant Fashion Dress",cat:"Women",price:799,old:1199,tag:"TRENDING",rating:4.6,reviews:93,size:["S","M","L","XL"],color:"Pink",img:"https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=700&q=80",desc:"A statement style for outings and special occasions. Dress it up with your favourite accessories."},
- {id:4,name:"Urban Casual Jacket",cat:"Men",price:1299,old:1899,tag:"NEW",rating:4.3,reviews:54,size:["S","M","L","XL"],color:"Brown",img:"https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=700&q=80",desc:"A casual outer layer that adds structure and style to your everyday wardrobe."},
- {id:5,name:"Everyday Chic Outfit",cat:"Women",price:1099,old:1599,tag:"TRENDING",rating:4.7,reviews:71,size:["S","M","L","XL"],color:"Multi",img:"https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=700&q=80",desc:"A modern fashion look for everyday inspiration. Style it with sneakers or accessories."},
- {id:6,name:"Minimal Streetwear",cat:"Men",price:699,old:999,tag:"VALUE PICK",rating:4.2,reviews:42,size:["S","M","L","XL"],color:"Green",img:"https://images.unsplash.com/photo-1516257984-b1b4d707412e?auto=format&fit=crop&w=700&q=80",desc:"A relaxed streetwear-inspired style made for a laid-back everyday look."},
- {id:7,name:"Fashion Sunglasses",cat:"Accessories",price:399,old:599,tag:"POPULAR",rating:4.1,reviews:38,size:["One Size"],color:"Black",img:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80",desc:"A fashion accessory to complete your look. Check the final product details before purchase."},
- {id:8,name:"Classic White Sneakers",cat:"Accessories",price:1499,old:1999,tag:"NEW",rating:4.5,reviews:62,size:["6","7","8","9","10"],color:"White",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80",desc:"A sporty footwear-inspired style for casual outfits. Select your size before ordering."}
-];
-
-const $ = id => document.getElementById(id);
-let category = "All";
-let selectedProduct = null;
-let selectedSize = "";
-let selectedQty = 1;
-let toastTimer;
-
-function readSaved(key,fallback) {
- try {
-   const value = JSON.parse(localStorage.getItem(key));
-   return Array.isArray(value) ? value : fallback;
- } catch(e) { return fallback; }
-}
-let cart = readSaved("urbanstyle-cart",[]);
-let wishlist = readSaved("urbanstyle-wishlist",[]);
-
-function save() {
- try {
-   localStorage.setItem("urbanstyle-cart",JSON.stringify(cart));
-   localStorage.setItem("urbanstyle-wishlist",JSON.stringify(wishlist));
- } catch(e) {}
- updateCounts();
-}
-function money(n) {
- return "₹" + Number(n).toLocaleString("en-IN");
-}
-function toast(msg) {
- const t=$("toast");
- t.textContent=msg;t.classList.add("show");
- clearTimeout(toastTimer);
- toastTimer=setTimeout(()=>t.classList.remove("show"),2400);
-}
-function go(page) {
- if(!$ (page)) return;
- document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
- $(page).classList.add("active");
- history.replaceState(null,"","#"+page);
- window.scrollTo({top:0,behavior:"smooth"});
- if(page==="cart") renderCart();
- if(page==="wishlist") renderWishlist();
- if(page==="shop") renderShop();
-}
-function discount(p) {
- return Math.round((1-p.price/p.old)*100);
-}
-function productCard(p) {
- const liked=wishlist.includes(p.id);
- return `<article class="product">
-  <div class="productpic">
-   <img loading="lazy" src="${p.img}" alt="${p.name}" onclick="openProduct(${p.id})" style="cursor:pointer">
-   <span class="tag">${p.tag}</span>
-   <button class="heart ${liked?'on':''}" onclick="toggleWish(${p.id})" aria-label="Toggle wishlist">${liked?'♥':'♡'}</button>
-  </div>
-  <div class="productinfo">
-   <div class="stars">★ ${p.rating} <span class="review">(${p.reviews} demo reviews)</span></div>
-   <h3>${p.name}</h3>
-   <div class="price">${money(p.price)} <span class="oldprice">${money(p.old)}</span></div>
-   <div class="discount">${discount(p)}% off (demo)</div>
-   <div class="cardbuttons">
-    <button class="secondary" onclick="openProduct(${p.id})">Details</button>
-    <button class="primary" onclick="quickAdd(${p.id})">Add +</button>
-   </div>
-  </div>
- </article>`;
-}
-function renderHome() {
- $("homeProducts").innerHTML=products.slice(0,4).map(productCard).join("");
-}
-function renderShop() {
- let list=products.filter(p=>
-   (category==="All"||p.cat===category) &&
-   (p.name+" "+p.cat+" "+p.color).toLowerCase().includes($("search").value.toLowerCase().trim())
- );
- const sort=$("sort").value;
- if(sort==="low") list.sort((a,b)=>a.price-b.price);
- if(sort==="high") list.sort((a,b)=>b.price-a.price);
- if(sort==="name") list.sort((a,b)=>a.name.localeCompare(b.name));
- document.querySelectorAll("[data-cat]").forEach(b=>b.classList.toggle("selected",b.dataset.cat===category));
- $("resultCount").textContent=list.length+" demo products";
- $("shopProducts").innerHTML=list.length?list.map(productCard).join():'<div class="empty"><h3>No products found</h3><p class="muted">Try another search or category.</p><button class="primary" style="margin-top:15px" onclick="resetFilters()">Show All Products</button></div>';
-}
-function resetFilters() {
- category="All";$("search").value="";$("sort").value="featured";renderShop();
-}
-function searchNow() {
- category="All";go("shop");renderShop();
-}
-function setCategory(cat) {
- category=cat;go("shop");renderShop();
-}
-function openProduct(id) {
- selectedProduct=products.find(p=>p.id===id);
- if(!selectedProduct)return;
- selectedSize=selectedProduct.size[0];
- selectedQty=1;
- renderDetail();
- go("detail");
-}
-function renderDetail() {
- const p=selectedProduct;
- $("detailContent").innerHTML=`
- <div class="detail-layout">
-  <div class="detail-image"><img src="${p.img}" alt="${p.name}"></div>
-  <div class="detail-copy">
-   <div class="eyebrow">${p.cat} COLLECTION · ${p.tag}</div>
-   <h1>${p.name}</h1>
-   <div class="stars">★ ${p.rating} <span class="review">(${p.reviews} illustrative reviews)</span></div>
-   <div class="detail-price">${money(p.price)} <del>${money(p.old)}</del></div>
-   <div class="discount">Save ${money(p.old-p.price)} · ${discount(p)}% off (demo)</div>
-   <p class="muted" style="margin-top:18px">${p.desc}</p>
-   <div class="option-label">Colour: ${p.color}</div>
-   <div class="option-label">Select size</div>
-   <div class="options">${p.size.map(s=>`<button class="opt ${s===selectedSize?'selected':''}" onclick="chooseSize('${s}')">${s}</button>`).join("")}</div>
-   <div class="option-label">Quantity</div>
-   <div class="qty">
-    <button onclick="changeQty(-1)">−</button><b id="detailQty">${selectedQty}</b>
-    <button onclick="changeQty(1)">+</button>
-   </div>
-   <div class="detail-buttons">
-    <button class="primary" onclick="addToCart(${p.id},selectedSize,selectedQty)">Add to Cart 🛒</button>
-    <button class="secondary" onclick="toggleWish(${p.id})">♡ Wishlist</button>
-   </div>
-   <div class="benefits">✓ Product details shown for demo<br>✓ Responsive shopping interface<br>✓ Checkout and payment not connected</div>
-  </div>
- </div>`;
-}
-function chooseSize(s) {
- selectedSize=s;renderDetail();
-}
-function changeQty(n) {
- selectedQty=Math.max(1,Math.min(10,selectedQty+n));
- $("detailQty").textContent=selectedQty;
-}
-function quickAdd(id) {
- const p=products.find(p=>p.id===id);
- addToCart(id,p.size[0],1);
-}
-function addToCart(id,size,qty) {
- const p=products.find(p=>p.id===id);
- if(!p)return;
- const item=cart.find(i=>i.id===id&&i.size===size);
- if(item)item.qty=Math.min(20,item.qty+qty);
- else cart.push({id,size,qty});
- save();toast(p.name+" added to cart!");
-}
-function updateCounts() {
- $("cartCount").textContent=cart.reduce((n,i)=>n+i.qty,0);
- $("wishCount").textContent=wishlist.length;
-}
-function toggleWish(id) {
- if(wishlist.includes(id)) {
-   wishlist=wishlist.filter(x=>x!==id);toast("Removed from wishlist");
- } else {
-   wishlist.push(id);toast("Added to wishlist ♡");
- }
- save();renderHome();
- if($("shop").classList.contains("active"))renderShop();
- if($("detail").classList.contains("active"))renderDetail();
- if($("wishlist").classList.contains("active"))renderWishlist();
-}
-function renderWishlist() {
- const list=products.filter(p=>wishlist.includes(p.id));
- $("wishProducts").innerHTML=list.length?list.map(productCard).join():'<div class="empty"><h3>Your wishlist is empty ♡</h3><p class="muted">Save your favourite products here.</p><button class="primary" style="margin-top:15px" onclick="go(\'shop\')">Explore Products</button></div>';
-}
-function removeCart(id,size) {
- cart=cart.filter(i=>!(i.id===id&&i.size===size));
- save();renderCart();toast("Product removed");
-}
-function cartQty(id,size,n) {
- const i=cart.find(i=>i.id===id&&i.size===size);
- if(!i)return;
- i.qty=Math.max(1,Math.min(20,i.qty+n));
- save();renderCart();
-}
-function renderCart() {
- if(!cart.length) {
-  $("cartContent").innerHTML='<div class="empty"><h2>Your cart is empty</h2><p class="muted" style="margin-top:10px">Your selected products will appear here.</p><button class="primary" style="margin-top:20px" onclick="go(\'shop\')">Start Shopping →</button></div>';
-  return;
- }
- let subtotal=0;
- const rows=cart.map(i=>{
-   const p=products.find(p=>p.id===i.id);
-   if(!p)return "";
-   subtotal+=p.price*i.qty;
-   return `<div class="cartrow">
-    <img src="${p.img}" alt="${p.name}">
-    <div><h3>${p.name}</h3><p class="muted small">Size: ${i.size}</p>
-     <b>${money(p.price)}</b>
-     <div class="qty" style="margin-top:8px;gap:10px">
-      <button onclick="cartQty(${i.id},'${i.size}',-1)">−</button><span>${i.qty}</span><button onclick="cartQty(${i.id},'${i.size}',1)">+</button>
-     </div>
-    </div>
-    <button class="secondary remove" onclick="removeCart(${i.id},'${i.size}')">Remove</button>
-   </div>`;
- }).join("");
- $("cartContent").innerHTML=rows+`
- <div class="cartsummary">
-  <h2>Order Summary</h2>
-  <div class="summaryline"><span>Subtotal</span><b>${money(subtotal)}</b></div>
-  <div class="summaryline"><span>Shipping</span><span>Calculated later</span></div>
-  <div class="summaryline total"><span>Estimated subtotal</span><span>${money(subtotal)}</span></div>
-  <div class="notice">Demo checkout only. No payment will be collected and no order will be submitted.</div>
-  <button class="primary" style="width:100%" onclick="checkoutDemo()">Continue to Demo Checkout →</button>
- </div>`;
-}
-function checkoutDemo() {
- toast("Demo only — payment and order processing are not connected.");
-}
-function sendEnquiry(e) {
- e.preventDefault();
- const name=$("customerName").value.trim();
- const email=$("customerEmail").value.trim();
- const message=$("customerMessage").value.trim();
- const text=`Demo enquiry for UrbanStyle\nName: ${name}\nEmail: ${email}\nMessage: ${message}`;
- const w=window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");
- if(!w) {
-   toast("Popup blocked. Please allow popups or copy your enquiry.");
- } else {
-   toast("Enquiry prepared in WhatsApp. Send it there to deliver.");
- }
-}
-renderHome();
-renderShop();
-updateCounts();
-
-const initial=location.hash.slice(1);
-if(initial&&$(initial))go(initial);
+/* SETUP: Replace the placeholder below with your Supabase Publishable key.
+   Do NOT use a secret key or service_role key in website code. */
+const SUPABASE_URL = "https://dswwrhptuimytqkuhftp.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_HNjC7D6XT2wI_miIXEbLZA_I0skc8JD";
+const SHOP_ID = "5ea6d4d7-3f6b-4c42-9946-1a1b93d1db42";
+let products=[],category="All",selectedProduct=null,selectedSize="",selectedQty=1,toastTimer;
+const $=id=>document.getElementById(id);
+function readSaved(key,fallback){try{const v=JSON.parse(localStorage.getItem(key));return Array.isArray(v)?v:fallback}catch(e){return fallback}}
+let cart=readSaved("urbanstyle-cart",[]),wishlist=readSaved("urbanstyle-wishlist",[]);
+function save(){try{localStorage.setItem("urbanstyle-cart",JSON.stringify(cart));localStorage.setItem("urbanstyle-wishlist",JSON.stringify(wishlist))}catch(e){}updateCounts()}
+function money(n){return "₹"+Number(n||0).toLocaleString("en-IN")}
+function toast(msg){const t=$("toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove("show"),2600)}
+function go(page){if(!$ (page))return;document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));$(page).classList.add("active");history.replaceState(null,"","#"+page);window.scrollTo({top:0,behavior:"smooth"});if(page==="cart")renderCart();if(page==="wishlist")renderWishlist();if(page==="shop")renderShop()}
+function discount(p){return p.old>p.price?Math.round((1-p.price/p.old)*100):0}
+function productCard(p){const liked=wishlist.includes(p.id);return `<article class="product"><div class="productpic"><img loading="lazy" src="${p.img}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80'" alt="${p.name}" onclick='openProduct(${JSON.stringify(p.id)})'><span class="tag">${p.tag||""}</span><button class="heart ${liked?'on':''}" onclick='toggleWish(${JSON.stringify(p.id)})'>${liked?'♥':'♡'}</button></div><div class="productinfo">${p.rating>0?`<div class="stars">★ ${p.rating} <span class="review">(${p.reviews} reviews)</span></div>`:""}<h3>${p.name}</h3><div class="price">${money(p.price)} ${p.old>p.price?`<span class="oldprice">${money(p.old)}</span>`:""}</div>${discount(p)>0?`<div class="discount">${discount(p)}% off</div>`:""}<div class="cardbuttons"><button class="secondary" onclick='openProduct(${JSON.stringify(p.id)})'>Details</button><button class="primary" onclick='quickAdd(${JSON.stringify(p.id)})'>Add +</button></div></div></article>`}
+function renderHome(){$("homeProducts").innerHTML=products.slice(0,4).map(productCard).join("")||'<div class="empty">Loading the latest collection…</div>'}
+function renderShop(){let list=products.filter(p=>(category==="All"||p.cat.toLowerCase()===category.toLowerCase())&&(p.name+" "+p.cat+" "+p.color).toLowerCase().includes($("search").value.toLowerCase().trim()));const s=$("sort").value;if(s==="low")list.sort((a,b)=>a.price-b.price);if(s==="high")list.sort((a,b)=>b.price-a.price);if(s==="name")list.sort((a,b)=>a.name.localeCompare(b.name));document.querySelectorAll("[data-cat]").forEach(b=>b.classList.toggle("selected",b.dataset.cat===category));$("resultCount").textContent=list.length+" products";$("shopProducts").innerHTML=list.length?list.map(productCard).join(""):'<div class="empty"><h3>No products found</h3><p class="muted">Try another search or category.</p><button class="primary" style="margin-top:15px" onclick="resetFilters()">Show All Products</button></div>'}
+function resetFilters(){category="All";$("search").value="";$("sort").value="featured";renderShop()}
+function searchNow(){category="All";go("shop");renderShop()}
+function setCategory(c){category=c;go("shop");renderShop()}
+function openProduct(id){selectedProduct=products.find(p=>p.id===id);if(!selectedProduct)return;selectedSize=selectedProduct.size[0];selectedQty=1;renderDetail();go("detail")}
+function renderDetail(){const p=selectedProduct;$("detailContent").innerHTML=`<div class="detail-layout"><div class="detail-image"><img src="${p.img}" alt="${p.name}"></div><div class="detail-copy"><div class="eyebrow">${p.cat} COLLECTION ${p.tag?'· '+p.tag:''}</div><h1>${p.name}</h1><div class="detail-price">${money(p.price)} ${p.old>p.price?`<del>${money(p.old)}</del>`:""}</div>${discount(p)>0?`<div class="discount">Save ${money(p.old-p.price)} · ${discount(p)}% off</div>`:""}<p class="muted" style="margin-top:18px">${p.desc}</p><div class="option-label">Colour: ${p.color}</div><div class="option-label">Select size</div><div class="options">${p.size.map(s=>`<button class="opt ${s===selectedSize?'selected':''}" onclick="chooseSize('${s}')">${s}</button>`).join("")}</div><div class="option-label">Quantity</div><div class="qty"><button onclick="changeQty(-1)">−</button><b id="detailQty">${selectedQty}</b><button onclick="changeQty(1)">+</button></div><div class="detail-buttons"><button class="primary" onclick='addToCart(${JSON.stringify(p.id)},selectedSize,selectedQty)'>Add to Cart 🛒</button><button class="secondary" onclick='toggleWish(${JSON.stringify(p.id)})'>♡ Wishlist</button></div><div class="benefits">✓ Responsive shopping interface<br>✓ Product managed through store admin<br>✓ Checkout and payment are not connected</div></div></div>`}
+function chooseSize(s){selectedSize=s;renderDetail()}
+function changeQty(n){selectedQty=Math.max(1,Math.min(10,selectedQty+n));$("detailQty").textContent=selectedQty}
+function quickAdd(id){const p=products.find(p=>p.id===id);if(p)addToCart(id,p.size[0],1)}
+function addToCart(id,size,qty){const p=products.find(p=>p.id===id);if(!p)return;const item=cart.find(i=>i.id===id&&i.size===size);if(item)item.qty=Math.min(20,item.qty+qty);else cart.push({id,size,qty});save();toast(p.name+" added to cart!")}
+function updateCounts(){$("cartCount").textContent=cart.reduce((n,i)=>n+i.qty,0);$("wishCount").textContent=wishlist.length}
+function toggleWish(id){if(wishlist.includes(id)){wishlist=wishlist.filter(x=>x!==id);toast("Removed from wishlist")}else{wishlist.push(id);toast("Added to wishlist ♡")}save();renderHome();if($("shop").classList.contains("active"))renderShop();if($("detail").classList.contains("active"))renderDetail();if($("wishlist").classList.contains("active"))renderWishlist()}
+function renderWishlist(){const list=products.filter(p=>wishlist.includes(p.id));$("wishProducts").innerHTML=list.length?list.map(productCard).join(""):'<div class="empty"><h2>Your wishlist is empty ♡</h2><p class="muted">Save your favourite products here.</p><button class="primary" style="margin-top:15px" onclick="go(\'shop\')">Explore Products</button></div>'}
+function removeCart(id,size){cart=cart.filter(i=>!(i.id===id&&i.size===size));save();renderCart();toast("Product removed")}
+function cartQty(id,size,n){const i=cart.find(i=>i.id===id&&i.size===size);if(!i)return;i.qty=Math.max(1,Math.min(20,i.qty+n));save();renderCart()}
+function renderCart(){if(!cart.length){$("cartContent").innerHTML='<div class="empty"><h2>Your cart is empty</h2><p class="muted" style="margin-top:10px">Your selected products will appear here.</p><button class="primary" style="margin-top:20px" onclick="go(\'shop\')">Start Shopping →</button></div>';return}let subtotal=0;const rows=cart.map(i=>{const p=products.find(p=>p.id===i.id);if(!p)return "";subtotal+=p.price*i.qty;return `<div class="cartrow"><img src="${p.img}" alt="${p.name}"><div><h3>${p.name}</h3><p class="muted">Size: ${i.size}</p><b>${money(p.price)}</b><div class="qty" style="margin-top:8px"><button onclick="cartQty(${i.id},'${i.size}',-1)">−</button><span>${i.qty}</span><button onclick="cartQty(${i.id},'${i.size}',1)">+</button></div></div><button class="secondary remove" onclick="removeCart(${i.id},'${i.size}')">Remove</button></div>`}).join("");$("cartContent").innerHTML=rows+`<div class="cartsummary"><h2>Order Summary</h2><div class="summaryline"><span>Subtotal</span><b>${money(subtotal)}</b></div><div class="summaryline"><span>Shipping</span><span>Calculated later</span></div><div class="summaryline total"><span>Estimated subtotal</span><span>${money(subtotal)}</span></div><div class="notice">Checkout is not yet available. Please contact the store to place an order.</div><button class="primary" style="width:100%" onclick="checkoutDemo()">Contact Store to Order →</button></div>`}
+function checkoutDemo(){go('contact');toast('Please contact the store to place an order.');}
+function sendEnquiry(e){e.preventDefault();const text=`Enquiry for UrbanStyle\nName: ${$("customerName").value.trim()}\nEmail: ${$("customerEmail").value.trim()}\nMessage: ${$("customerMessage").value.trim()}`;const w=window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");if(!w)toast("Popup blocked. Please allow popups.");else toast("Enquiry prepared in WhatsApp. Send it there.")}
+async function loadStoreProducts(){if(!window.supabase||SUPABASE_PUBLISHABLE_KEY==="PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE"){toast("Setup needed: add your Supabase Publishable Key in index.html, then reload.");return}try{const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);const {data,error}=await client.from("products").select("id,name,description,price,image_url,category,stock,is_active").eq("shop_id",SHOP_ID).eq("is_active",true).order("created_at",{ascending:false});if(error)throw error;const live=(data||[]).map((p,index)=>({id:String(p.id),name:p.name,cat:(p.category||"Clothing").trim(),price:Number(p.price)||0,old:Number(p.price)||0,tag:"",rating:0,reviews:0,size:["One Size"],color:"Default",img:p.image_url||"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80",desc:p.description||"Product from the UrbanStyle collection.",stock:p.stock}));products=live;renderHome();renderShop();if($("wishlist").classList.contains("active"))renderWishlist();if($("cart").classList.contains("active"))renderCart();if(live.length)toast(live.length+" live product(s) loaded")}catch(e){console.error("Supabase product load failed:",e);toast("Products could not load. Check the key, connection and table policies.")}}
+renderHome();renderShop();updateCounts();const initial=location.hash.slice(1);if(initial&&$(initial))go(initial);loadStoreProducts();window.addEventListener("hashchange",()=>{const page=location.hash.slice(1);if(page&&$(page)&&!$(page).classList.contains("active"))go(page)});
 </script>
 </body>
-</html>
+  </html>
